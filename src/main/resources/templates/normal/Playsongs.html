@@ -1,0 +1,413 @@
+<!--Music Streaming site-->
+<!doctype html>
+<html lang="en">
+  <head>
+
+     <!-- Required meta tags -->
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <!--Aplayer CSS-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aplayer/1.10.1/APlayer.min.css"/>
+
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+  
+  
+   
+
+
+    <title>Home Section</title>
+    <style>
+        body {
+            background:black;
+            font-family: Open sans;
+            margin-top: 0px; 
+            text-decoration: none;          
+        }
+        .home {       
+          color: #030303;
+          font-size: x-large;
+          margin-left: 84rem;
+          position:absolute;
+          background-color:#9b9999;
+          font-style:normal;
+          border-radius: 4px;
+          transition: 1s;
+          padding: 2px 5px;
+          text-decoration: none; 
+          margin-top: 30px;
+    }
+        .home:hover {
+         background-color: #bdc2c2;
+         opacity: 1;
+          }
+        img {
+            width: 100%;
+            min-height: 250px;
+        }
+        .main {
+            padding: 40px 0;
+        }
+        .col-md-3 {
+            margin-bottom: 10px;
+        }
+        .album-poster {
+            height: fit-content;
+            width: fit-content;
+             position: relative;
+             display: block;
+             border-radius: 7px;
+             overflow: hidden;
+             box-shadow: 0 7px 17px #04d9ffde;
+             transition: all ease 0.4s;
+        }
+        .album-poster:hover{
+            box-shadow: none;
+            transform: scale(0.98) translateY(5px);
+        }
+        h3 {
+            font-size: 34px;
+            margin-top: 2%;
+            margin-bottom: 34px;
+            border-bottom: 6px solid #e6e6e6;
+            padding-bottom: 15px;
+            color: burlywood;
+        }
+        p {
+            font-size: 18px;
+            font-weight: 400;
+            color: cornsilk;
+        }
+        h4 {
+            margin-top: 30px;
+            font-size: 22px;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: #dadada;
+        }
+
+         DEFAULT is hide music player 
+        #aplayer {
+            position: fixed;
+            bottom: -100%;
+            left: 0;
+            width: 100%;
+            margin: 0;
+            box-shadow: 0 -2px 2px #dadada;
+            background-color: #fff;
+            transition: all ease 0.5s;
+        }
+        
+
+        #aplayer.showPlayer {
+            bottom:0;
+        }
+
+
+
+    /* MUSIC PLAYER CUSTOMIZING STYLE */    span{
+            color: #000 !important;
+            font-size: 16px;
+        }
+        .aplayer .aplayer-info .aplayer-controller .aplayer-bar-wrap .aplayer-bar .aplayer-loaded {
+            background: #e0e0e0;
+            height: 4px;
+        }
+        .aplayer .aplayer-info .aplayer-controller .aplayer-bar-wrap .aplayer-bar .aplayer-played {
+            height: 4px;
+            background-color: #2196F3 !important;
+        }
+        .aplayer .aplayer-info .aplayer-controller .aplayer-bar-wrap .aplayer-bar .aplayer-paused .aplayer-thumb {
+            background-color: #2196F3 !important;
+        }
+
+        .aplayer .aplayer-icon {
+            width: 20px;
+            height: 20px;
+        }
+
+        .aplayer .aplayer-info .aplayer-controller .aplayer-item .aplayer-icon path {
+            fill: #000;
+        }
+
+        .aplayer .aplayer-info .aplayer-music {
+            margin-bottom: 5px;
+        }
+
+
+
+    </style>
+
+    <style>
+        /*footer*/
+       .footer{
+        margin-top: 50%;
+        margin: 2em 0;
+	    width: 90%;
+	    z-index: 10;
+	    display: flex;
+	    justify-content: space-between;
+       
+         }
+       .footer .social_handle{
+	    font-size: 2.2em;
+	    color: #fff;
+       }
+       .footer .social_handle i{
+	    margin: 0 15px;
+       }
+       .footer #logo{
+       color: #fff;
+       font-size: 2.2em;
+       font-family: cursive;
+       }
+    </style>
+
+
+  </head>
+  
+  <body>
+    <a href="./home.jsp" class="home"><b>Home</b></a>
+    
+    	<!-- navbar -->
+	<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top ">
+		<a class="navbar-brand" href="#">MusicClassifier</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarSupportedContent"
+			aria-controls="navbarSupportedContent" aria-expanded="false"
+			aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse text-uppercase"
+			id="navbarSupportedContent">
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item active"><a class="nav-link" th:href="@{/}"
+					href="#"><i class="fa-solid fa-house-user"></i>Home <span
+						class="sr-only">(current)</span> </a></li>
+						<li class="nav-item"><a class="nav-link" th:href="@{/user/playlist}"
+					href="#">PlaySong</a></li>
+				<li class="nav-item"><a class="nav-link" th:href="@{/user/classify}"
+					href="#">ClassifySongs</a></li>
+
+				<li class="nav-item"><a class="nav-link disabled"><span
+						th:text="${user.name}"></span></a></li>
+
+
+				<li class="nav-item"><a class="nav-link" th:href="@{/logout}"
+					href="#">Logout</a></li>
+
+			</ul>
+			<!-- <form class="form-inline my-2 my-lg-0">
+				<input class="form-control mr-sm-2" type="search"
+					placeholder="Search" aria-label="Search">
+				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+			</form> -->
+		</div>
+	</nav>
+	<!-- end of navbar -->
+    
+    
+        <div class="container" id="Home">
+            
+            <div class="row">
+                
+                <div class="col-md-12">
+                    <h3>Recent Releases</h3>
+                </div>
+                <div class="col-md-3">
+                    <a href="javascrip::void();" class="album-poster" data-switch="0">
+                        <img src="../img/Happi.jpg" alt="">
+                    </a>
+                    <h4>HAPPI</h4>
+                    <p>Mangoo</p>
+                </div>
+
+                <div class="col-md-3">
+                  <a href="javascrip::void();" class="album-poster"  data-switch="1">
+                      <img src="../img/Lauv.jpg" alt="">
+                  </a>
+                  <h4>I LIKE ME BETTER</h4>
+                  <p>Lauv</p>
+              </div>
+
+              <div class="col-md-3">
+                  <a href="javascrip::void();" class="album-poster" data-switch="2">
+                      <img src="../img/Maya.jpg" alt="">
+                  </a>
+                  <h4>MAYA</h4>
+                  <p>Ashutosh Kc</p>
+              </div>
+
+              <div class="col-md-3">
+                  <a href="javascrip::void();" class="album-poster"  data-switch="3">
+                      <img src="../img/rockstar.jpg" alt="">
+                  </a>
+                  <h4>PHIR SE UD CHALA</h4>
+                  <p>Mohit Chauhan</p>
+              </div>
+
+              <div class="col-md-3">
+                  <a href="javascrip::void();" class="album-poster" data-switch="4">
+                      <img src="../img/Kahaani.jpg" alt="">
+                  </a>
+                  <h4>KAHAANI</h4>
+                  <p>When Chai Meet Toast</p>
+              </div>
+
+              <div class="col-md-3">
+                <a href="javascrip::void();" class="album-poster" data-switch="5">
+                    <img src="../img/Velle.jpg" alt="">
+                </a>
+                <h4>Shukar Manavaan</h4>
+                <p>Armaan Malik</p>
+            </div>
+
+
+            
+          </div>
+
+          <div class="row">
+              <div class="col-md-12">
+                  <h3>comming soon</h3> 
+              </div>
+              <div class="col-md-2">
+                  <a href="#" class="album-poster">
+                      <img src="../img/k.jpg" alt="">
+                  </a>
+                  <h4>Jaane Tu Yaa Jaane Na</h4>
+              </div>
+
+              <div class="col-md-2">
+                  <a href="#" class="album-poster">
+                      <img src="../img/Rihaa.jpg" alt="">
+                  </a>
+                  <h4>Rihaa</h4>
+              </div>
+
+              <div class="col-md-2">
+                  <a href="#" class="album-poster">
+                      <img src="../img/Beautiful-In-White.jpg" alt="">
+                  </a>
+                  <h4>Beautiful In White</h4>
+              </div>
+
+              <div class="col-md-2">
+                  <a href="#" class="album-poster">
+                      <img src="../img/ImAllYours.jpg" alt="">
+                  </a>
+                  <h4>Im All Yours</h4>
+              </div>
+          </div>
+
+        </div>
+       
+
+    
+
+    <link rel="stylesheet" href="APlayer.min.css">
+    <div id="aplayer"></div>
+    <script src="APlayer.min.js"></script>
+
+  <!--Juery Link-->
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+
+  <!--Bootstrap Link-->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+  <!--APlayer Jquery Link-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aplayer/1.10.1/APlayer.min.js"></script>
+
+  <script>
+/*NOW I CLICK ALBUM POSTER TO PLAY THE SONG */
+      $(".album-poster").on('click', function(e){
+          var dataSwitchId = $(this).attr('data-switch');
+          console.log(dataSwitchId);
+
+          // and now i use aplayer switch function see
+          ap.list.switch(dataSwitchId); //this is static but i use dynamic
+
+          //aplayer play function
+          //when i click any song to play
+          ap.play();
+
+          // click to slideUp player see
+          $("#aplayer").addClass('showPlayer');
+
+      });
+
+      
+    const ap = new APlayer({
+  container: document.getElementById('aplayer'),
+  listFolded: true,
+  audio: [
+      {
+      name: 'Happi',
+      artist: 'Mangoo',
+      url: '../songs/Mangoo-Happy.mp3',
+      genre: 'Beat',
+      cover: '../img/Happi.jpg'
+  },
+  {
+      name: 'I LIKE ME BETTER',
+      artist: 'LAUV',
+      url: '../songs/Lauv.mp3',
+      genre: 'Pop',
+      cover: '../img/Lauv.jpg'
+  },
+
+  {
+      name: 'MAYA',
+      artist: 'ASHUTOSH_KC',
+      url: '../songs/Maya.mp3',
+      genre: 'Melody',
+      cover: '../img/Maya.jpg'
+  },
+
+  {
+      name: 'PHIR SE UD CHALA',
+      artist: 'MOHIT-CHAUHAN',
+      url: '../songs/Phirseudchala.mp3',
+      genre: 'Melody',
+      cover: '../img/rockstar.jpg'
+  },
+
+  {
+      name: 'KAHAANI',
+      artist: 'WHEN CHAI MEET TOAST',
+      url: '../songs/Kahaani.mp3',
+      genre: 'Soofy Melody',
+      cover: '../img/Kahaani.jpg'
+  },
+
+  {
+      name: 'SHUKAR MANAVAAN',
+      artist: 'Armaan Malik',
+      url: '../songs/Shukar_Manaavan.mp3',
+      genre: 'Bollywood',
+      cover: '../img/Velle.jpg'
+  },
+
+]
+});
+  </script>
+
+  <!-- footer part -->
+  <div class="footer" id="footer">
+    <a id="logo"></i>&nbsp;MusicClassifier</a>
+    <div class="social_handle">
+       <a href='https://www.facebook.com/manoj.khanal.1238/'><i class='bx bxl-twitter'></i></a> 
+        <i class='bx bxl-github' ></i>
+        <i class='bx bxl-facebook'></i>
+        <a href="https://www.instagram.com"><i class="bx bxl-instagram"></i></a>
+    </div>
+</div>
+
+    
+       
+      
+
+  </body>
+</html>

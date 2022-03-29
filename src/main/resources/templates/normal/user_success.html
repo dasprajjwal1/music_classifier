@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="normal/user_base::layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title th:text="${title}"></title>
+</head>
+<body>
+	<section>
+		<div class="card mr-3 ml">
+			<div class="card-body">
+
+				<h1 class="text-center">Your Files</h1>
+				<a href="#" class=" btn btn-outline-primary" th:href="@{/user/upload_form}">Add Songs</a>
+				<a href="#" class=" btn btn-outline-primary" th:href="@{/user/accuracy}">Accuracy</a>
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th scope="col">#</th>
+							<th scope="col">FileName</th>
+							<th scope="col">FileType</th>
+							<th scope="col">Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="c : ${songs}">
+							<th scope="row" th:text="${'Song'+c.sId}">1</th>
+							<td th:text="${c.FileName}"></td>
+							<td th:text="${c.FileType}"></td>
+							<td>
+							
+							<a  class="btn btn-outline-primary" th:href="@{'/user/download/'+${c.sId}}">Download</a>
+							<a  class="btn btn-outline-danger" th:href="@{'/user/delete/'+${c.sId}}">Download</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+
+			</div>
+
+		</div>
+	</section>
+</body>
+</html>

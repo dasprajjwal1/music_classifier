@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="normal/user_base::layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title th:text="${title}"></title>
+<link rel="stylesheet" href="" />
+</head>
+<body>
+	<section>
+	<div class="card">
+
+			<div class="card-body">
+				<h1 class="text-center">Add Song</h1>
+
+				<div class="contanier-fluid mt-1">
+
+					<div class="row">
+
+						<div class="col-md-8 offset-md-2">
+
+							<form action="#" th:object="${song}"
+								method="post"
+								th:action="@{/user/classifyattribute}">
+
+								<!-- instrumentalness -->
+
+								<div class="input-group">
+
+									<div class="input-group-prepend">
+
+										<div class="input-group-text mr-3">
+											<i class="fa fa-plus"></i>
+										</div>
+
+									</div>
+									<input type="text" name="instrumentalness" placeholder="Enter instrumentalness here"
+										class="form-control" />
+								</div>
+
+								<br>
+								<!-- energy-->
+
+								<div class="input-group">
+
+									<div class="input-group-prepend">
+
+										<div class="input-group-text mr-3">
+											<i class="fa fa-plus"></i>
+										</div>
+
+									</div>
+									<input type="text" name="energy"
+										placeholder="Enter energy here" class="form-control" />
+								</div>
+								<br>
+
+								<!-- loudness -->
+
+								<div class="input-group">
+
+									<div class="input-group-prepend">
+
+										<div class="input-group-text mr-3">
+											<i class="fa fa-plus"></i>
+										</div>
+
+									</div>
+									<input type="text" name="loudness" placeholder="Enter loudness here"
+										class="form-control" />
+								</div>
+								<br>
+
+								<!-- acousticness -->
+
+								<div class="input-group">
+
+									<div class="input-group-prepend">
+
+										<div class="input-group-text mr-3">
+											<i class="fa fa-plus"></i>
+										</div>
+
+									</div>
+									<input type="text" name="acousticness" placeholder="Enter acousticness here"
+										class="form-control" />
+								</div>
+								<br>
+								<!-- duration_ms -->
+
+								<div class="input-group">
+
+									<div class="input-group-prepend">
+
+										<div class="input-group-text mr-3">
+											<i class="fa fa-plus"></i>
+										</div>
+
+									</div>
+									<input type="text" name="duration_ms" placeholder="Enter duration_ms here"
+										class="form-control" />
+								</div>
+								<br>
+
+								<div class="contanier text-center" >
+									<button class="btn btn-outline-primary">ClassifyAttribute</button>
+
+								</div>
+
+
+
+
+							</form>
+
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+	</section>
+</body>
+</html>

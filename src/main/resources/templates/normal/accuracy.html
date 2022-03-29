@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="normal/user_base::layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title th:text="${title}"></title>
+</head>
+<body>
+	<section>
+		<div class="card mr-3 ml">
+			<div class="card-body">
+
+				<h1 class="text-center">Accuracy</h1>
+				
+				<h2 th:text="${accuracy}"></h2>
+
+			</div>
+
+		</div>
+	</section>
+</body>
+</html>
